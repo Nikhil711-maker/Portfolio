@@ -135,8 +135,10 @@
 
         .about-content{
             display:flex;
-            gap: 3 rem;
+            gap: 3rem;
             align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .about-text p{
@@ -147,7 +149,8 @@
 
         .skills-grid{
             display: grid;
-            grid-template-columns: repeat(autofit, minimax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         .skill-card{
@@ -160,7 +163,7 @@
 
         .skill-card:hover{
             transform: translateY(-5px);
-            box-shadow: var(--transition);
+            box-shadow: var(--shadow);
         }
 
         .skill-card h3{
@@ -177,9 +180,9 @@
             margin-bottom: 0.5rem;
         }
 
-        .project-grid{
+        .projects-grid{
             display:grid;
-            grid-template-columns: repeat(auto-fit, minimax(300xp,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
@@ -212,7 +215,7 @@
         }
 
         .project-content h3{
-            color: var(--text-light);
+            color: var(--text-dark);
             margin-bottom: 1rem;
         }
 
@@ -269,7 +272,7 @@
             transition: var(--transition);
         }
 
-        submit-btn:hover {
+        .submit-btn:hover {
             background-color: var(--secondary-color);
         }
 
@@ -287,7 +290,7 @@
             text-align: center;
         }
 
-        social-links {
+        .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
@@ -309,24 +312,28 @@
                 display: flex;
             }
 
-        .nav-links {
-             position: fixed;
-             left: -100%;
-             top: 70px;
-            flex-direction: column;
-            background-color: var(--white);
-            width: 100%;
-            text-align: center;
-             transition: var(--transition);
-            box-shadow: var(--shadow);
-            padding: 2rem 0;
-        }
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+                padding: 2rem 0;
+            }
 
-        .nav-links.active {
-             left: 0;
-        }
+            .nav-links.active {
+                left: 0;
+            }
 
-        .hero h1 {
+            .hero {
+                padding: 4rem 5%;
+            }
+
+            .hero h1 {
                 font-size: 2rem;
             }
 
@@ -338,19 +345,68 @@
                 flex-direction: column;
             }
 
+            section {
+                padding: 3rem 0;
+            }
+
             section h2 {
                 font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                padding: 1.5rem;
             }
          }
 
          @media (max-width: 480px) {
+            nav {
+                padding: 1rem 3%;
+            }
+
+            main {
+                padding: 0 3%;
+            }
+
+            .hero {
+                padding: 3rem 3%;
+            }
+
             .hero h1 {
                 font-size: 1.75rem;
             }
 
-            .projects-grid,
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            section h2 {
+                font-size: 1.75rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .skill-card {
+                padding: 1.5rem;
+            }
+
+            .contact-container {
+                padding: 1rem;
             }
         }
     </style>
@@ -460,22 +516,26 @@
 
         <section id="contact">
             <h2>Get in Touch</h2>
-            <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" id="name" name="name" required aria-required="true">
-                <span class="error" id="nameError" role="alert">Please enter your name</span>
+            <div class="contact-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required aria-required="true">
+                        <span class="error" id="nameError" role="alert">Please enter your name</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required aria-required="true">
+                        <span class="error" id="emailError" role="alert">Please enter a valid email address</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required aria-required="true"></textarea>
+                        <span class="error" id="messageError" role="alert">Please enter a message</span>
+                    </div>
+                    <button type="submit" class="submit-btn">Send message</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required area-required="true">
-                <span class="error" id="nameError" role="alert">Please enter a valid email adress</span>
-            </div>
-            <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea id="message" name="message" required aria-required="true"></textarea>
-                <span class="error" id="messageError" role="alert">Please enter a message</span>
-            </div>
-            <button type="submit" class="submit-btn">Send message</button>
         </section>
     </main>
 
@@ -492,25 +552,27 @@
 
     <script>
         // Hamburger Menu Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+        const hamburger = document.getElementById('Hamburger');
+        const navLinks = document.getElementById('navlinks');
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        hamburger.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
-            }
-        });
-
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
             });
-        });
+
+            hamburger.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    navLinks.classList.toggle('active');
+                }
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
 
         // Form Validation
         const form = document.getElementById('contactForm');
@@ -518,48 +580,56 @@
         const emailInput = document.getElementById('email');
         const messageInput = document.getElementById('message');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            let isValid = true;
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                let isValid = true;
 
-            // Name validation
-            if (nameInput.value.trim() === '') {
-                showError('nameError');
-                isValid = false;
-            } else {
-                hideError('nameError');
-            }
+                // Name validation
+                if (nameInput.value.trim() === '') {
+                    showError('nameError');
+                    isValid = false;
+                } else {
+                    hideError('nameError');
+                }
 
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value.trim())) {
-                showError('emailError');
-                isValid = false;
-            } else {
-                hideError('emailError');
-            }
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    showError('emailError');
+                    isValid = false;
+                } else {
+                    hideError('emailError');
+                }
 
-            // Message validation
-            if (messageInput.value.trim() === '') {
-                showError('messageError');
-                isValid = false;
-            } else {
-                hideError('messageError');
-            }
+                // Message validation
+                if (messageInput.value.trim() === '') {
+                    showError('messageError');
+                    isValid = false;
+                } else {
+                    hideError('messageError');
+                }
 
-            if (isValid) {
-                alert('Thank you for your message! I will get back to you soon.');
-                form.reset();
-            }
-        });
+                if (isValid) {
+                    alert('Thank you for your message! I will get back to you soon.');
+                    form.reset();
+                }
+            });
+        }
 
         function showError(errorId) {
-            document.getElementById(errorId).style.display = 'block';
+            const errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.style.display = 'block';
+            }
         }
 
         function hideError(errorId) {
-            document.getElementById(errorId).style.display = 'none';
+            const errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
         }
 
         // Smooth scrolling for navigation links
