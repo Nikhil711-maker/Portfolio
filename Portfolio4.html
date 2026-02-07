@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nikhil - Web Developer Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        header{
+            background-color:var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo{
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color)
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a{
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition:var(--transition);
+        }
+
+        .nav-links a:hover{
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display:none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width:25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            transition: var(--transition);
+        }
+        
+        .hero{
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .hero h1{
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p{
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: var(--white);
+            color:var(--primary-color);
+            text-decoration: noen;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        main{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section{
+            padding: 4rem 0;
+        }
+
+        section h2{
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .about-content{
+            display:flex;
+            gap: 3 rem;
+            align-items: center;
+        }
+
+        .about-text p{
+            color:var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image{
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img{
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .skills-grid{
+            display: grid;
+            grid-template-columns: repeat(autofit, minimax(250px, 1fr));
+        }
+
+        .skill-card{
+            background-color:var(--bg-light);
+            padding: 2rem;
+            border-radius:10px;
+            text-align:center;
+            transition:var(--transition);
+        }
+
+        .skill-card:hover{
+            transform: translateY(-5px);
+            box-shadow: var(--transition);
+        }
+
+        .skill-card h3{
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card ul{
+            list-style: none;
+            color: var(--text-light);
+        }
+
+        .skill-card li{
+            margin-bottom: 0.5rem;
+        }
+
+        .project-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minimax(300xp,1fr));
+            gap: 2rem;
+        }
+
+        .project-card{
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image{
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .project-content{
+            padding: 1.5rem;
+        }
+
+        .project-content h3{
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .form-group{
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display:block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea{
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color)
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+        .nav-links {
+             position: fixed;
+             left: -100%;
+             top: 70px;
+            flex-direction: column;
+            background-color: var(--white);
+            width: 100%;
+            text-align: center;
+             transition: var(--transition);
+            box-shadow: var(--shadow);
+            padding: 2rem 0;
+        }
+
+        .nav-links.active {
+             left: 0;
+        }
+
+        .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+         }
+
+         @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav role = "navigation" aria-label = "Main navigation">
+            <div class = "logo" aria-label = "Portfolio logo">NK</div>
+            <ul class = "nav-links" id = "navlinks">
+                <li> <a href="#home">Home</a></li>
+                <li> <a href="#about">About</a></li>
+                <li> <a href="#skills">Skills</a></li>
+                <li> <a href="#projects">Projects</a></li>
+                <li> <a href="#contact">Contacts</a></li>
+            </ul>
+            <div class = "hamburger" id="Hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="Home">
+        <h1>Hi, I'm Nikhil Kumar</h1>
+        <p>Full Stack Web Developer | Building Digital Experiences</p>
+        <a href="#contact" class="btn">Get in Touch</a>
+    </section>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class = "about-content">
+                <div class = "about-text">
+                    <p>
+                        I'm passionate web developer with 5 years of experiences creating responsive and user-friendly website. I specialize in modern web technologies and love bringing creative ideas to life through code.
+                    </p>
+                    <p>
+                        My journey in web development started with a curiosity about how websites work, and it has evolved into a career I'm truly passionate about. I'm constantly learning and adapting to new technologies to deliver the best solutions for my clients.
+                    </p>
+                </div>
+                <div clas = "about-image">
+                    <img src="" alt="Nikhil Kumar profile picture">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>My skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li> HTML5 & CSS3</li>
+                        <li> Javascript (ES6+)</li>
+                        <li> React and Vue.js</li>
+                        <li> Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Node.js & Express</li>
+                        <li>Python and Django</li>
+                        <li>RESTful APIs</li>
+                        <li>Database Management</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Others</h3>
+                    <ul>
+                    <li>Git & GitHub</li>
+                    <li>VS Code</li>
+                    <li>Figma & Adobe XD</li>
+                    <li>Agile Methodology</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class = "projects-grid">
+                <article class = "project-card">
+                    <div class = "project-image" role="img" arial-label="E-commerce platform screenshot">E-commerce Platform</div>
+                    <div class = "project-content">
+                        <h3>E-commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with payment integration, user authentication, and admin dashboard.</p>
+                        <a href = "#" class = "btn">View Project</a>
+                    </div>
+                </article>
+                <article class = "project-card">
+                <div class = "project-image" role="img" aria-label="Weather app screenshot">Weather App</div>
+                <div class = "project-content">
+                    <h3>Weather Dashboard</h3>
+                    <p>Real-time weather application using API integration with beautiful UI and responsive design.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+                </article>
+                <article class = "project-card">
+                    <div class = "project-image" role="img" aria-label="Task manager screenshot">Task Manager</div>
+                    <div class = "project-content">
+                        <h3>Task Management App</h3>
+                        <p>Productivity tool with drag-and-drop functionality deadlines, and team collaboration features.</p>
+                        <a href="#" class="btn">View project</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required aria-required="true">
+                <span class="error" id="nameError" role="alert">Please enter your name</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required area-required="true">
+                <span class="error" id="nameError" role="alert">Please enter a valid email adress</span>
+            </div>
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required aria-required="true"></textarea>
+                <span class="error" id="messageError" role="alert">Please enter a message</span>
+            </div>
+            <button type="submit" class="submit-btn">Send message</button>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/"aria-label="GitHub Profile">GitHub</a>
+            <a href="#" aria-label="LinkedIn Profile">LinkedIn</a>
+            <a href="#" aria-label="Twitter Profile">Twitter</a>
+        </div>
+        <p>&copy; 2026 Nikhil Kumar Singh All rights reserved. </p>
+    </footer>
+
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        hamburger.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                navLinks.classList.toggle('active');
+            }
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form Validation
+        const form = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            let isValid = true;
+
+            // Name validation
+            if (nameInput.value.trim() === '') {
+                showError('nameError');
+                isValid = false;
+            } else {
+                hideError('nameError');
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                showError('emailError');
+                isValid = false;
+            } else {
+                hideError('emailError');
+            }
+
+            // Message validation
+            if (messageInput.value.trim() === '') {
+                showError('messageError');
+                isValid = false;
+            } else {
+                hideError('messageError');
+            }
+
+            if (isValid) {
+                alert('Thank you for your message! I will get back to you soon.');
+                form.reset();
+            }
+        });
+
+        function showError(errorId) {
+            document.getElementById(errorId).style.display = 'block';
+        }
+
+        function hideError(errorId) {
+            document.getElementById(errorId).style.display = 'none';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
